@@ -7,7 +7,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: ["http://localhost:5173"],
+    origin: ["http://localhost:5173", "https://taskmanager-30574.web.app"],
     credentials: true,
   })
 );
@@ -45,8 +45,6 @@ async function run() {
       const result = await taskCollection.find(query).toArray();
 
       res.send(result);
-
-      console.log(result);
     });
 
     // ! adding task api
