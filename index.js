@@ -31,6 +31,24 @@ async function run() {
     const database = client.db("taskHandler");
     const taskCollection = database.collection("tasks");
 
+    // ! send all tasks api
+
+    app.get("/api/tasks/:email", async (req, res) => {
+      const email = req.params.email;
+
+      //   console.log("email from get = ", email);
+
+      const query = {
+        userEmail: email,
+      };
+
+      const result = await taskCollection.find(query).toArray();
+
+      res.send(result);
+
+      console.log(result);
+    });
+
     // ! adding task api
     app.post("/api/task", async (req, res) => {
       const data = req.body;
